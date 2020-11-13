@@ -1,20 +1,22 @@
 (load "weapon.scm")
 
 ; ---- State ----
-(define (state-maker location house-locations houses player)
+(define (state-maker location house-locations houses player weapons)
   (lambda (value)
     (case value
       ((location) location)
       ((house-locations) house-locations)
       ((houses) houses)
+      ((weapons) weapons)
       ((num-monsters) (reduce + 0 (map num-monster-get houses)))
       ((player) player))))
 
 (define (next-state state action)
   (let ((location (next-location state action))
         (houses (next-houses state action)))
-    (let ((player (next-player state houses action)))
-      (state-maker location (state 'house-locations) houses player))))
+    (let ((player (next-player state houses action))
+          (weapons (next-weapons state action)))
+      (state-maker location (state 'house-locations) houses player weapons))))
 
 (define (next-location state action)
   (if (equal? (car action) 'move)
@@ -35,6 +37,11 @@
     (let ((house (get-house-at-location state houses)))
       (player-get-attacked (state 'player) house))
     (state 'player)))
+
+(define (next-weapons state action)
+  (if (equal? (car action) 'attack)
+    (update-weapon-inventory (state 'weapons) (cadr action))
+    (state 'weapons)))
 
 (define (get-house-at-location state houses)
   (let ((current-location (location-list (state 'location))))

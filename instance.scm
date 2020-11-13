@@ -23,7 +23,12 @@
           (new-monster-maker 'vampire)
           (new-monster-maker 'werewolf))
         0))
-    (player-maker 100 100)))
+    (player-maker 100 100)
+    (list
+      (new-weapon-maker 'nerd)
+      (new-weapon-maker 'nerd)
+      (new-weapon-maker 'kiss)
+      (new-weapon-maker 'nerd))))
 
 (define moves
   (list
