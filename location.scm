@@ -10,7 +10,7 @@
 
 (define (move-maker dir)
   (case dir
-    ((N) (location-maker 0 1))
-    ((S) (location-maker 0 -1))
-    ((E) (location-maker 1 0))
-    ((W) (location-maker -1 0))))
+    ((N) (location-maker -1 0))
+    ((S) (location-maker 1 0))
+    ((E) (location-maker 0 1))
+    ((W) (location-maker 0 -1))))
