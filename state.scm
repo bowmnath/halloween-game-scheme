@@ -1,17 +1,20 @@
+(load "weapon.scm")
+
 ; ---- State ----
 (define (state-maker location house-locations houses player)
   (lambda (value)
     (case value
       ((location) location)
       ((house-locations) house-locations)
-      ((num-monsters) (reduce + (map num-monster-get houses)))
+      ((houses) houses)
+      ((num-monsters) (reduce + 0 (map num-monster-get houses)))
       ((player) player))))
 
 (define (next-state state action)
   (let ((location (next-location state action))
         (houses (next-houses state action)))
     (let ((player (next-player state houses action)))
-      (state-maker location houses player))))
+      (state-maker location (state 'house-locations) houses player))))
 
 (define (next-location state action)
   (if (equal? (car action) 'move)
@@ -20,10 +23,11 @@
 
 (define (next-houses state action)
   (if (equal? (car action) 'attack)
-    (let ((house (get-house-at-location state (state 'houses))))
+    (let ((house (get-house-at-location state (state 'houses)))
+          (attack-instance ((state 'player) 'attack (cadr action))))
       (if (null? house)
         (error "No house to attack!")
-        (house-get-attacked house (attack (state 'player) (cadr action)))))
+        (houses-after-attack house attack-instance (state 'houses))))
     (state 'houses)))
 
 (define (next-player state houses action)
@@ -33,10 +37,11 @@
     (state 'player)))
 
 (define (get-house-at-location state houses)
-  (let rec-match-house ((locations (state 'house-locations))
-                        (houses houses))
-    (if (null? locations)
-      '()
-      (if (equal? (state 'location) (car locations))
-        (car houses)
-        (rec-match-house (cdr locations) (cdr houses))))))
+  (let ((current-location (location-list (state 'location))))
+    (let rec-match-house ((locations (state 'house-locations))
+                          (houses houses))
+      (if (null? locations)
+        '()
+        (if (equal? current-location (location-list (car locations)))
+          (car houses)
+          (rec-match-house (cdr locations) (cdr houses)))))))

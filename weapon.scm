@@ -11,8 +11,8 @@
         ((type) type)
         (else damage)))))
 
-(define (attack weapon player)
+(define (attack-maker weapon power)
   (lambda (arg)
     (case arg
       ((type) (weapon 'type))
-      (else (* (player 'power) (weapon 'damage))))))
+      (else (* power (weapon 'damage))))))

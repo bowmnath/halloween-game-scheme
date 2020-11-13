@@ -2,9 +2,9 @@
 (define (monster-maker health take-damage power)
   (if (<= health 0)
     '()
-    (lambda (action . attack)
+    (lambda (action . attack-instance)
       (case action
-        ((get-attacked) (monster-maker (- health (take-damage attack))
+        ((get-attacked) (monster-maker (- health (take-damage (car attack-instance)))
                                         take-damage
                                         power))
         ((attack) power)))))
@@ -12,7 +12,7 @@
 (define (new-monster-maker type)
   (let ((health (health-maker type))
         (take-damage (damage-taker-maker type))
-        (damage (attack-maker type)))
+        (damage (monster-attack-maker type)))
     (monster-maker health take-damage damage)))
 
 (define (health-maker type)
@@ -22,7 +22,7 @@
     ((human) 5)
     (else 50)))
 
-(define (attack-maker type)
+(define (monster-attack-maker type)
   (case type
     ((vampire) 30)  ; LATER could make these functions with random numbers
     ((werewolf) 40)

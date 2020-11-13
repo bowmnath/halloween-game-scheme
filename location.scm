@@ -8,6 +8,9 @@
       x
       y)))
 
+(define (location-list location)
+  (list (location 'x) (location 'y)))
+
 (define (move-maker dir)
   (case dir
     ((N) (location-maker -1 0))
