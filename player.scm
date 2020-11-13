@@ -11,4 +11,4 @@
   (player 'get-attacked
           (if (> (length (house 'monsters)) 0)
             ((car (house 'monsters)) 'attack)
-            ((car (house 'people)) 'attack))))
+            ((new-monster-maker 'human) 'attack))))
