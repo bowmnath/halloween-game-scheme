@@ -7,7 +7,7 @@
 
 (define (house-maker monsters people)
   (lambda (value)
-    (case (value)
+    (case value
       (('monsters) monsters)
       (('people) people))))
 

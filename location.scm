@@ -1,10 +1,10 @@
 ; ---- Location ----
 (define (do-move location move)
-  (location-maker (+ location('x') move('x')) (+ location('y')  move('y'))))
+  (location-maker (+ (location 'x) (move 'x)) (+ (location 'y) (move 'y))))
 
 (define (location-maker x y)
   (lambda (coord)
-    (if (equal? coord 'x')
+    (if (equal? coord 'x)
       x
       y)))
 

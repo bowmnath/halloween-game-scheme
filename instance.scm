@@ -1,3 +1,9 @@
+(load "game.scm")
+(load "player.scm")
+(load "monster.scm")
+(load "house.scm")
+(load "location.scm")
+
 ; . . H
 ; H . .
 ; . . .
