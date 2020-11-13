@@ -8,8 +8,8 @@
 (define (house-maker monsters people)
   (lambda (value)
     (case value
-      (('monsters) monsters)
-      (('people) people))))
+      ((monsters) monsters)
+      ((people) people))))
 
 (define (num-monster-get house)
     (length (house 'monsters)))

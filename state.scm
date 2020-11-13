@@ -2,10 +2,10 @@
 (define (state-maker location house-locations houses player)
   (lambda (value)
     (case value
-      (('location) location)
-      (('house-locations) house-locations)
-      (('num-monsters) (reduce + (map num-monster-get houses)))
-      (('player) player))))
+      ((location) location)
+      ((house-locations) house-locations)
+      ((num-monsters) (reduce + (map num-monster-get houses)))
+      ((player) player))))
 
 (define (next-state state action)
   (let ((location (next-location state action))

@@ -3,16 +3,16 @@
 (define (weapon-maker type)
   (let ((damage
           (case type
-            (('kiss') 1)
-            (('nerd') 4)
+            ((kiss) 1)
+            ((nerd) 4)
             (else 5))))
     (lambda (arg)
       (case arg
-        (('type) type)
+        ((type) type)
         (else damage)))))
 
 (define (attack weapon player)
   (lambda (arg)
     (case arg
-      (('type) (weapon 'type))
+      ((type) (weapon 'type))
       (else (* (player 'power) (weapon 'damage))))))
