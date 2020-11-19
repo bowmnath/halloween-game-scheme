@@ -21,8 +21,18 @@
       ((monsters) monsters)
       ((people) people))))
 
+(define (new-house-maker)
+  (house-maker (generate-house-monsters) 0))
+
 (define (num-monster-get house)
     (length (house 'monsters)))
 
 (define (choose-random-monster house)
   (choose-from-list (house 'monsters)))
+
+(define (generate-house-monsters)
+  (let ((num-monsters-in-house (integer-between 0 10)))
+    (generate-list-from-types
+      new-monster-maker
+      choose-random-monster-type
+      num-monsters-in-house)))

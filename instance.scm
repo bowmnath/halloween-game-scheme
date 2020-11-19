@@ -15,14 +15,8 @@
       (location-maker 0 2)
       (location-maker 1 0))
     (list
-      (house-maker
-        (list (new-monster-maker 'vampire))
-        0)
-      (house-maker
-        (list
-          (new-monster-maker 'vampire)
-          (new-monster-maker 'werewolf))
-        0))
+      (new-house-maker)
+      (new-house-maker))
     (new-player-maker)
     (generate-arsenal)))
 

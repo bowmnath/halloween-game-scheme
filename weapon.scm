@@ -52,9 +52,4 @@
   (choose-from-list '(kiss straw chocolate nerd)))
 
 (define (generate-arsenal)
-  (let arsenal-helper ((num-left 10)
-                       (arsenal '()))
-    (if (= 0 num-left)
-      arsenal
-      (let ((new-weapon (new-weapon-maker (choose-random-weapon-type))))
-        (arsenal-helper (- num-left 1) (append arsenal (list new-weapon)))))))
+  (generate-list-from-types new-weapon-maker choose-random-weapon-type 10))

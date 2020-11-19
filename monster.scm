@@ -55,3 +55,6 @@
          ((straw) 0)
          (else (attack 'damage)))))
     ((human) (lambda (attack) 0))))
+
+(define (choose-random-monster-type)
+  (choose-from-list '(zombie vampire ghoul werewolf)))
