@@ -53,6 +53,18 @@ This code is released under the MIT License. Please hack away and enjoy. If
 anyone makes the game interactive, I would love to see it! I'll gladly post a
 link here or accept a pull request.
 
+## Credit
+
+Thanks to Prof. Ira Woodring for designing the game and allowing me to reuse
+it and post this solution.
+
+## Posting Other Solutions
+
+I would appreciate if CIS 343 students not post their solutions to this project
+publicly in case other professors want to reuse this project in the future.
+I decided (and confirmed with Prof. Woodring) that it would be okay to post
+this solution because it is not object oriented and not in Python.
+
 ## Bugs
 
 I did not test this thoroughly at all, so there are no doubt bugs lurking. I am
