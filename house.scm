@@ -21,3 +21,10 @@
 
 (define (num-monster-get house)
     (length (house 'monsters)))
+
+(define (choose-random-monster house)
+  (let random-helper ((num-skip (integer-between 0 (- (num-monster-get house) 1)))
+                      (monsters (house 'monsters)))
+    (if (> num-skip 0)
+      (random-helper (- num-skip 1) (cdr monsters))
+      (car monsters))))

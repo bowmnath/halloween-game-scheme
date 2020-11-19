@@ -13,5 +13,5 @@
 (define (player-get-attacked player house)
   (player 'get-attacked
           (if (> (length (house 'monsters)) 0)
-            ((car (house 'monsters)) 'attack)
+            ((choose-random-monster house) 'attack)
             ((new-monster-maker 'human) 'attack))))
