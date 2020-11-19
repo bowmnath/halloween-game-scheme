@@ -6,10 +6,12 @@
   (if (null? (state 'player))
     (begin
       (display "Oh no! You did not save the neighborhood!")
+      (newline)
       #f)
     (if (= (state 'num-monsters) 0)
       (begin
         (display "Everyone is back to normal! Great work!")
+        (newline)
         #t)
       (if (= (length moves) 0)
         (error "Ran out of moves before game completed")
