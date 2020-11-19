@@ -1,10 +1,13 @@
+(load "random.scm")
+
 ; ---- Weapon ----
 (define (weapon-maker type count)
   (let ((damage
           (case type
             ((kiss) 1)
-            ((nerd) 4)
-            (else 5))))
+            ((straw) (float-between 1 1.75))
+            ((chocolate) (float-between 2 2.4))
+            ((nerd) (float-between 3.5 5)))))
     (if (= 0 count)
       '()
       (lambda (arg)
@@ -16,9 +19,10 @@
 (define (new-weapon-maker type)
   (let ((count
           (case type
-            ((kiss) 2)
-            ((nerd) 3)
-            (else 100))))
+            ((kiss) 100)
+            ((straw) 2)
+            ((chocolate) 4)
+            ((nerd) 1))))
     (weapon-maker type count)))
 
 (define (use-weapon weapon)

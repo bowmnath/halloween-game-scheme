@@ -17,31 +17,41 @@
 
 (define (health-maker type)
   (case type
-    ((vampire) 130)  ; LATER could make these functions with random numbers
-    ((werewolf) 80)
-    ((human) 5)
-    (else 50)))
+    ((zombie) (integer-between 50 100))
+    ((vampire) (integer-between 100 200))
+    ((ghoul) (integer-between 40 80))
+    ((werewolf) 200)
+    ((human) 5)))
 
 (define (monster-attack-maker type)
   (case type
-    ((vampire) 30)  ; LATER could make these functions with random numbers
-    ((werewolf) 40)
-    ((human) -1)
-    (else 10)))
+    ((zombie) (integer-between 0 10))
+    ((vampire) (integer-between 10 20))
+    ((ghoul) (integer-between 15 30))
+    ((werewolf) (integer-between 0 40))
+    ((human) 5)))
 
 (define (damage-taker-maker type)
   (case type
+    ((zombie)
+     (lambda (attack)
+       (case (attack 'type)
+         ((straw) (* 2 (attack 'damage)))
+         (else (attack 'damage)))))
     ((vampire)
      (lambda (attack)
-       (case (attack 'type)  ; LATER could abstract out boilerplate,
-                             ; maybe with list of exceptions as (type, damage) pairs?
-         ((kiss) 0)
+       (case (attack 'type)
+         ((chocolate) 0)
+         (else (attack 'damage)))))
+    ((ghoul)
+     (lambda (attack)
+       (case (attack 'type)
+         ((nerd) (* 5 (attack 'damage)))
          (else (attack 'damage)))))
     ((werewolf)
      (lambda (attack)
        (case (attack 'type)
-         ((kiss) (* 2 (attack 'damage)))
-         ((nerd) (* 0.5 (attack 'damage)))
+         ((chocolate) 0)
+         ((straw) 0)
          (else (attack 'damage)))))
-    ((human) (lambda (attack) 0))
-    (else (lambda (attack) (attack 'damage)))))
+    ((human) (lambda (attack) 0))))

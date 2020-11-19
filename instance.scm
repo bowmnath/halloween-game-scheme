@@ -23,7 +23,7 @@
           (new-monster-maker 'vampire)
           (new-monster-maker 'werewolf))
         0))
-    (player-maker 100 100)
+    (new-player-maker)
     (list
       (new-weapon-maker 'nerd)
       (new-weapon-maker 'nerd)
