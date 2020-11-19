@@ -14,4 +14,6 @@
   (player 'get-attacked
           (if (> (length (house 'monsters)) 0)
             ((choose-random-monster house) 'attack)
-            ((new-monster-maker 'human) 'attack))))
+            (if (> (house 'people) 0)
+              ((new-monster-maker 'human) 'attack)
+              0))))
