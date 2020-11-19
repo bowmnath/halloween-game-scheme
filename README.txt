@@ -33,10 +33,6 @@ You can look at commit `e02f21b6` to see the differences. In particular, I
 added getters to Monster and Player that are not strictly necessary to simulate
 the game.
 
-In terms of actual coding style, this is a "do as I say, not as I do"
-situation.  I would expect much better commenting on any code that was
-submitted in CIS 343 (or anywhere).
-
 ## Background
 
 In Winter 2020 (and previous semesters), CIS 343 at GVSU had a project to

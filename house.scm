@@ -1,3 +1,16 @@
+; house.scm
+;
+; Functions dealing with houses. A house is represented as a function that
+; returns information about the conceptual house depending on what arguments
+; the function is passed.
+;
+; Because there is no mutable state, it is necessary to have functions that
+; create a new house when actions are taken that affect a house.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 (load "helper.scm")
 
 ; ---- House ----

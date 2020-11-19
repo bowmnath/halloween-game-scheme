@@ -1,3 +1,24 @@
+; weapon.scm
+;
+; Functions dealing with weapons. A weapon is represented as a function that
+; returns information about the conceptual weapon depending on what arguments
+; the function is passed.
+;
+; When a weapon is used, except in the case of a base weapon, the number
+; of times the weapon can be used again decreases. The weapon disappears
+; when it can no longer be used.
+;
+; Because there is no mutable state, it is necessary to have functions that
+; create a new weapon when actions are taken that affect a weapon.
+;
+; The attacking power of a weapon and its type are determined when it is
+; generated. Use count is the only attribute of a weapon that should change in
+; the middle of a game instance.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 (load "random.scm")
 (load "helper.scm")
 

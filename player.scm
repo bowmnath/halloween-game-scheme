@@ -1,3 +1,24 @@
+; player.scm
+;
+; Functions dealing with the Player. The Player is represented as a function
+; that
+;   * returns information about the conceptual player depending on what
+;     arguments the function is passed, or
+;   * returns a new player resulting from an attack, or
+;   * returns an attack corresponding to the power of the player and the
+;     weapon choice.
+;
+; Because there is no mutable state, it is necessary to have functions that
+; create a new player when actions are taken that affect a player.
+;
+; The attacking power of a player is determined when it is generated. Health is
+; the only attribute of a player that should change in the middle of a game
+; instance.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 ; ---- Player ----
 (define (player-maker health power)
   (if (<= health 0)

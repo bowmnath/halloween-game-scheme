@@ -1,3 +1,15 @@
+; location.scm
+;
+; Functions dealing with locations. A location is represented as a function
+; that returns an x or y coordinate depending on its argument.
+;
+; Because there is no mutable state, it is necessary to have functions that
+; create a new location whenever anything moves.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 ; ---- Location ----
 (define (do-move location move)
   (location-maker (+ (location 'x) (move 'x)) (+ (location 'y) (move 'y))))

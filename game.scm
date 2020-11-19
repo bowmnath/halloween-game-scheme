@@ -1,3 +1,13 @@
+; game.scm
+;
+; Given an initial state and predefined list of moves, simulate a game of
+; Zork until player either wins, loses, commits an illegal move, or runs out
+; of moves.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 (load "state.scm")
 
 ; ---- Game ----

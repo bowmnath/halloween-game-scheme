@@ -1,3 +1,21 @@
+; monster.scm
+;
+; Functions dealing with monsters. A monster is represented as a function that
+;   * returns information about the conceptual monster depending on what
+;     arguments the function is passed, or
+;   * returns a new monster resulting from an attack.
+;
+; Because there is no mutable state, it is necessary to have functions that
+; create a new monster when actions are taken that affect a monster.
+;
+; The attacking power of a monster and its type are determined when it is
+; generated. Health is the only attribute of a monster that should change in
+; the middle of a game instance.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 ; ---- Monster ----
 (define (monster-maker health take-damage power type)
   (if (<= health 0)

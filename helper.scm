@@ -1,3 +1,13 @@
+; helper.scm
+;
+; Helper routines for dealing with lists. Included in a separate file because
+; they generic enough to be reused in various Zork files (and conceivably
+; other projects).
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 (define (choose-from-list options)
   ; does not check for empty list
   (let random-helper ((num-skip (integer-between 0 (- (length options) 1)))

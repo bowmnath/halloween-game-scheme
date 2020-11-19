@@ -1,3 +1,17 @@
+; state.scm
+;
+; Functions dealing with game state. State is represented as a function that
+; returns other functions relating to the player, houses, weapons, and any
+; other aspects of game state that need to be recorded. The game progresses
+; by moving from one state to the next.
+;
+; Because nothing is mutable, it is necessary to have functions that create a
+; new state whenever state must be updated.
+;
+; author: Nathaniel Bowman
+; revised: November 19, 2020
+
+
 (load "weapon.scm")
 (load "monster.scm")
 
