@@ -53,3 +53,21 @@
 
 (define (generate-arsenal)
   (generate-list-from-types new-weapon-maker choose-random-weapon-type 10))
+
+(define (display-arsenal state)
+  (display-list (state 'weapons) display-single-weapon))
+
+(define (display-single-weapon weapon)
+  (begin
+    (display (weapon-name-from-type (weapon 'type)))
+    (display " Damage: ")
+    (display (weapon 'damage))
+    (display " Count: ")
+    (display (weapon 'count))))
+
+(define (weapon-name-from-type type)
+  (case type
+    ((kiss) "HersheyKiss")
+    ((straw) "SourStraw")
+    ((chocolate) "ChocolateBar")
+    ((nerd) "NerdBomb")))

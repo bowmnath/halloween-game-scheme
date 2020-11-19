@@ -5,7 +5,9 @@
     (lambda (action damage-or-weapon)
       (case action
         ((get-attacked) (player-maker (- health damage-or-weapon) power))
-        ((attack) (attack-maker (new-weapon-maker damage-or-weapon) power))))))
+        ((attack) (attack-maker (new-weapon-maker damage-or-weapon) power))
+        ((see-attack) power)
+        ((see-health) health)))))
 
 (define (new-player-maker)
   (player-maker (integer-between 100 125) (integer-between 10 20)))

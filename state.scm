@@ -1,4 +1,5 @@
 (load "weapon.scm")
+(load "monster.scm")
 
 ; ---- State ----
 (define (state-maker location house-locations houses player weapons)
@@ -52,3 +53,32 @@
         (if (equal? current-location (location-list (car locations)))
           (car houses)
           (rec-match-house (cdr locations) (cdr houses)))))))
+
+(define (display-state state)
+  (begin
+    (newline)
+    (let ((loc (state 'location)))
+      (display "Location: ")
+      (display (loc 'x))
+      (display " ")
+      (display (loc 'y)))
+    (newline)
+    (display "Health: ")
+    (display ((state 'player) 'see-health 0))
+    (newline)
+    (display "Arsenal: ")
+    (newline)
+    (display-arsenal state)
+    (newline)
+    (display "Total monsters remaining: ")
+    (display (state 'num-monsters))
+    (newline)
+    (let ((current-house (get-house-at-location state (state 'houses))))
+      (if (not (null? current-house))
+        (begin
+          (display "Monsters at current location: ")
+          (newline)
+          (display-monsters current-house))))
+    (newline)
+    (newline)
+    (newline)))

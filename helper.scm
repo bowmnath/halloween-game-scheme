@@ -14,3 +14,12 @@
       so-far
       (let ((new-element (element-maker (type-chooser))))
         (list-helper (- num-left 1) (append so-far (list new-element)))))))
+
+
+(define (display-list total-list display-item)
+  (let rec-display ((remaining total-list))
+    (if (not (null? remaining))
+      (begin
+        (display-item (car remaining))
+        (newline)
+        (rec-display (cdr remaining))))))

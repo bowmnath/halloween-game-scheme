@@ -1,19 +1,22 @@
 ; ---- Monster ----
-(define (monster-maker health take-damage power)
+(define (monster-maker health take-damage power type)
   (if (<= health 0)
     '()
     (lambda (action . attack-instance)
       (case action
         ((get-attacked) (monster-maker (- health (take-damage (car attack-instance)))
                                         take-damage
-                                        power))
-        ((attack) power)))))
+                                        power
+                                        type))
+        ((attack) power)
+        ((see-type) type)
+        ((see-health) health)))))
 
 (define (new-monster-maker type)
   (let ((health (health-maker type))
         (take-damage (damage-taker-maker type))
         (damage (monster-attack-maker type)))
-    (monster-maker health take-damage damage)))
+    (monster-maker health take-damage damage type)))
 
 (define (health-maker type)
   (case type
@@ -58,3 +61,26 @@
 
 (define (choose-random-monster-type)
   (choose-from-list '(zombie vampire ghoul werewolf)))
+
+(define (display-monsters house)
+  (display-list (house 'monsters) display-single-monster)
+  (if (> (house 'people) 0)
+    (begin
+      (newline)
+      (display (house 'people))
+      (display " people in house."))))
+
+(define (display-single-monster monster)
+  (begin
+    (display (monster-name-from-type (monster 'see-type)))
+    (display " Health: ")
+    (display (monster 'see-health))
+    (display " Attack: ")
+    (display (monster 'attack))))
+
+(define (monster-name-from-type type)
+  (case type
+    ((zombie) "Zombie")
+    ((vampire) "Vampire")
+    ((ghoul) "Ghoul")
+    ((Werewolf) "Werewolf")))

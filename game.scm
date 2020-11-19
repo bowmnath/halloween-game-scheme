@@ -4,9 +4,15 @@
 ; don't have input capability right now, so game is just list of moves
 (define (game state moves)
   (if (null? (state 'player))
-    #f
+    (begin
+      (display "Oh no! You did not save the neighborhood!")
+      #f)
     (if (= (state 'num-monsters) 0)
-      #t
+      (begin
+        (display "Everyone is back to normal! Great work!")
+        #t)
       (if (= (length moves) 0)
         (error "Ran out of moves before game completed")
-        (game (next-state state (car moves)) (cdr moves))))))
+        (begin
+          (display-state state)
+          (game (next-state state (car moves)) (cdr moves)))))))
