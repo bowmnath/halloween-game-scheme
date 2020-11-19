@@ -24,7 +24,7 @@
     ((vampire) (integer-between 100 200))
     ((ghoul) (integer-between 40 80))
     ((werewolf) 200)
-    ((human) 5)))
+    ((human) 100)))
 
 (define (monster-attack-maker type)
   (case type
@@ -32,7 +32,7 @@
     ((vampire) (integer-between 10 20))
     ((ghoul) (integer-between 15 30))
     ((werewolf) (integer-between 0 40))
-    ((human) 5)))
+    ((human) -1)))
 
 (define (damage-taker-maker type)
   (case type
