@@ -24,11 +24,7 @@
           (new-monster-maker 'werewolf))
         0))
     (new-player-maker)
-    (list
-      (new-weapon-maker 'nerd)
-      (new-weapon-maker 'nerd)
-      (new-weapon-maker 'kiss)
-      (new-weapon-maker 'nerd))))
+    (generate-arsenal)))
 
 (define moves
   (list
